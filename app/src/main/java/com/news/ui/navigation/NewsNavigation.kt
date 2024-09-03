@@ -1,7 +1,5 @@
 package com.news.ui.navigation
 
-import android.os.Build
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -9,12 +7,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.gson.Gson
-import com.news.data.entity.Article
+import com.news.domain.entity.Article
 import com.news.ui.screens.article_details.ArticleDetailsScreen
 import com.news.ui.screens.home.HomeScreen
-import com.news.ui.screens.home.HomeViewModel
-
-private const val TAG = "NewsNavigation"
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun NewsNavigation() {
@@ -22,7 +18,7 @@ fun NewsNavigation() {
 
     NavHost(navController = navController, startDestination = NewsScreens.Home.name) {
         composable(NewsScreens.Home.name) {
-            HomeScreen(navController, HomeViewModel())
+            HomeScreen(navController, koinViewModel())
         }
 
         composable(

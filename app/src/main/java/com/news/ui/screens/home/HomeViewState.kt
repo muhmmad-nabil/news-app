@@ -1,6 +1,7 @@
 package com.news.ui.screens.home
 
-import com.news.data.entity.Article
+import com.news.domain.entity.Article
+
 
 sealed class HomeViewState {
     object Idle : HomeViewState()

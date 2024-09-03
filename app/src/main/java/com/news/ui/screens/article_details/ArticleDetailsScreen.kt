@@ -27,7 +27,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.news.R
-import com.news.data.entity.Article
+import com.news.domain.entity.Article
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -99,14 +99,14 @@ fun ArticleDetailsScreen(
 
             Text(
                 modifier = Modifier.padding(vertical = 10.dp, horizontal = 5.dp),
-                text = article.description,
+                text = article.description ?: "",
                 color = Color.Black,
             )
 
 
             Text(
                 modifier = Modifier.padding(vertical = 10.dp, horizontal = 5.dp),
-                text = article.content,
+                text = article.content ?: "",
                 color = Color.Black,
             )
         }

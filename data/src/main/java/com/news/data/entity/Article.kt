@@ -1,7 +1,5 @@
 package com.news.data.entity
 
-import java.io.Serializable
-
 data class Article(
     val author: String,
     val content: String,
@@ -11,4 +9,4 @@ data class Article(
     val title: String,
     var url: String,
     var urlToImage: String
-) : Serializable
+)
