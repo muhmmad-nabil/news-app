@@ -36,7 +36,6 @@ fun ArticleDetailsScreen(
     article: Article
 
 ) {
-
     val context = LocalContext.current
     val sendIntent = Intent(Intent.ACTION_SEND).apply {
         putExtra(Intent.EXTRA_TEXT, article.url)
