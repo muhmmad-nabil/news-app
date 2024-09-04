@@ -53,7 +53,6 @@ import java.nio.charset.StandardCharsets
 fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
     val viewState by viewModel.state.collectAsStateWithLifecycle(HomeViewState.Idle)
 
-
     val errorSnackState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
     val news = remember {

@@ -9,5 +9,6 @@ data class Article(
     val publishedAt: String,
     val title: String,
     var url: String,
-    var urlToImage: String?
+    var urlToImage: String?,
+    val category: String
 ) : Serializable

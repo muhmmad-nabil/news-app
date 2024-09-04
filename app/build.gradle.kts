@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    id("kotlin-kapt")
 }
 
 android {
@@ -77,5 +78,12 @@ dependencies {
     implementation(libs.coil.compose)
 
     implementation(libs.koin.androidx.compose)
+
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+    //Reactive Network
+    implementation(libs.reactivenetwork.rx2)
 
 }

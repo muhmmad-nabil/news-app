@@ -2,6 +2,7 @@ package com.news.ui.screens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.news.App.Companion.isInternetConnected
 import com.news.domain.entity.Resource
 import com.news.domain.usecase.GetNewsUseCase
 import kotlinx.coroutines.Dispatchers
@@ -45,7 +46,7 @@ class HomeViewModel(private val useCase: GetNewsUseCase) : ViewModel() {
 
     private fun getNews(category: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            useCase(category).apply {
+            useCase(isInternetConnected, category).apply {
                 when (this) {
                     is Resource.Success -> _viewState.emit(
                         HomeViewState.Result(
