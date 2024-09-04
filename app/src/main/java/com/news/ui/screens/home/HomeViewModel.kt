@@ -26,6 +26,9 @@ class HomeViewModel(private val useCase: GetNewsUseCase) : ViewModel() {
     private val _viewState = MutableStateFlow<HomeViewState>(HomeViewState.Idle)
     val state: StateFlow<HomeViewState> get() = _viewState
 
+    var selectedIndex = MutableStateFlow(0)
+        private set
+
     init {
         processIntent()
         getNews(categories[0])
@@ -48,11 +51,16 @@ class HomeViewModel(private val useCase: GetNewsUseCase) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             useCase(isInternetConnected, category).apply {
                 when (this) {
-                    is Resource.Success -> _viewState.emit(
-                        HomeViewState.Result(
-                            data?.articles ?: emptyList()
+                    is Resource.Success -> {
+                        if (!isInternetConnected) {
+                            selectedIndex.emit(categories.indexOf(data?.articles?.get(0)?.category))
+                        }
+                        _viewState.emit(
+                            HomeViewState.Result(
+                                data?.articles ?: emptyList()
+                            )
                         )
-                    )
+                    }
 
                     is Resource.Error -> _viewState.emit(HomeViewState.Error(message ?: ""))
                     is Resource.Loading -> {

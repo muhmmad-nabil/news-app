@@ -59,7 +59,7 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
         mutableStateOf(emptyList<Article>())
     }
     val selectedCategoryIndex = remember {
-        mutableIntStateOf(0)
+        mutableIntStateOf(viewModel.selectedIndex.value)
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
